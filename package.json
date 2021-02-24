@@ -1,15 +1,19 @@
 {
-  "name": "learn-starter",
-  "version": "0.1.0",
+  "name": "slangratt",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "build": "next build && next export",
+    "start": "next start",
+    "deploy": "@powershell -Command Copy-Item -Path .\\out\\* -Destination Q:\\var\\www\\slangratt.floreteng.se\\public -Recurse -Force"
   },
   "dependencies": {
+    "autoprefixer": "^10.2.4",
     "next": "^10.0.0",
+    "postcss": "^8.2.6",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "tailwindcss": "^2.0.3"
   }
 }
