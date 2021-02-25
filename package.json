@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "next build",
+    "export": "next export",
     "start": "next start",
     "deploy": "@powershell -Command Copy-Item -Path .\\out\\* -Destination Q:\\var\\www\\slangratt.floreteng.se\\public -Recurse -Force"
   },
