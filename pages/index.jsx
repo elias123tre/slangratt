@@ -1,6 +1,7 @@
 import Layout from "components/Layout"
 import Link from "next/link"
 import { useState } from "react"
+import { categories } from "../categories"
 
 const InfoBox = ({ href, children, bgClass, bgImage = "", ...props }) => (
   <Link href={href}>
@@ -16,62 +17,75 @@ const InfoBox = ({ href, children, bgClass, bgImage = "", ...props }) => (
 
 const Home = () => {
   const [searchResults, setResults] = useState([])
-  const search = async (e) => {
-    e.preventDefault()
-    if (e.target.value.trim() && e.target.value.length > 2) {
-      const response = await fetch(`/api/search?q=${encodeURI(e.target.value)}`)
+  const search = async (event) => {
+    event.preventDefault()
+    if (event.target.value.trim() && event.target.value.length >= 1) {
+      const response = await fetch(`/api/search?q=${encodeURI(event.target.value)}`)
       const data = await response.json()
-      setResults(data)
-    } else {
-      setResults([])
+      if (event.target.value.length >= 2) {
+        return setResults(data)
+      }
     }
+    return setResults([])
   }
 
   return (
     <Layout title="Släng rätt!">
-      <main className="max-w-5xl px-4 mx-auto flex-1 dark:text-white" id="main">
-        <div
-          className="p-2 flex justify-center items-center space-x-1 absolute right-4 -mt-3 shadow bg-white text-gray-800 dark:bg-gray-800 dark:text-white rounded-full"
+      <main className="flex-1 max-w-5xl px-4 mx-auto my-8 dark:text-white" id="main">
+        {/* <div
+          className="absolute flex items-center justify-center p-2 -mt-3 space-x-1 text-gray-800 bg-white rounded-full shadow right-4 dark:bg-gray-800 dark:text-white"
           id="themeswitcher"
         >
           <button id="light">
-            <i className="material-icons h-full">wb_sunny</i>
+            <i className="h-full material-icons">wb_sunny</i>
           </button>
           <button id="auto">
-            <i className="material-icons h-full">brightness_auto</i>
+            <i className="h-full material-icons">brightness_auto</i>
           </button>
           <button id="dark">
-            <i className="material-icons h-full">brightness_2</i>
+            <i className="h-full material-icons">brightness_2</i>
           </button>
-        </div>
+        </div> */}
 
         <div className="mx-auto">
-          <section className="mx-auto overflow-hidden transition-height duration-500" id="jumbo">
-            <div className="md:p-12 grid place-items-center">
-              <h1 className="my-6 p-2 text-5xl md:text-6xl text-center font-black tracking-wider uppercase italic text-gray-100">
+          <section
+            className="mx-auto overflow-hidden text-center text-gray-100 duration-500 transition-height"
+            id="jumbo"
+          >
+            <div className="grid md:p-12 place-items-center">
+              <h1 className="p-2 mb-6 text-5xl italic font-black tracking-wider uppercase md:mt-6 md:text-6xl">
                 {/* text-gradient */}
                 Släng skräpet i rätt kärl!
               </h1>
+              <p className="mb-6 text-lg max-w-prose">
+                Det ska vara enkelt att hjälpa miljön. Läs mer om hur man{" "}
+                <Link href="/sorteringsguide">
+                  <a className="text-blue-400 link">källsorterar</a>
+                </Link>{" "}
+                de olika avfallen nedan. Hitta också din närmaste{" "}
+                <Link href="/sorteringsstationer">
+                  <a className="text-blue-400 link">sorteringsstation</a>
+                </Link>
+                .
+              </p>
             </div>
-            <div className="mb-6 md:mb-16 flex flex-col lg:flex-row justify-around items-center space-y-6 lg:space-y-0">
-              <InfoBox href="/sorteringsguide#kompost" bgClass="bg-kompost">
-                Kompost
-              </InfoBox>
-              <InfoBox href="/sorteringsguide#grovsopor" bgClass="bg-grovsopor">
-                Grovsopor
-              </InfoBox>
-              <InfoBox href="/sorteringsguide#plast" bgClass="bg-plast">
-                Plast
-              </InfoBox>
-              <InfoBox href="/sorteringsguide#förpackningar" bgClass="bg-forpackning">
-                Förpackningar
-              </InfoBox>
+            <div className="flex flex-col items-center justify-around mb-6 space-y-6 lg:space-x-3 md:mb-16 lg:flex-row lg:space-y-0">
+              {categories.map((elem) => (
+                <InfoBox
+                  href={`/sorteringsguide#${elem.slug}`}
+                  bgClass={elem?.bgClass}
+                  bgImage={!elem?.bgClass ? elem?.thumbnailUrl : null}
+                  key={elem.slug}
+                >
+                  {elem.name}
+                </InfoBox>
+              ))}
             </div>
           </section>
 
           <section>
-            <h1 className="font-semibold text-3xl text-gray-100">
-              <label for="q" className="cursor-auto">
+            <h1 className="text-3xl font-semibold text-gray-100">
+              <label htmlFor="q" className="cursor-auto">
                 Vad vill du slänga?
               </label>
             </h1>
@@ -80,10 +94,10 @@ const Home = () => {
               <form
                 action="/search"
                 method="GET"
-                className="flex justify-between items-center dark:bg-gray-700 bg-white border dark:border-gray-800 border-gray-100 rounded-3xl transition duration-200 shadow focus-within:shadow-lg overflow-hidden"
+                className="flex items-center justify-between overflow-hidden transition duration-200 bg-white border border-gray-100 shadow dark:bg-gray-700 dark:border-gray-800 rounded-3xl focus-within:shadow-lg"
               >
                 <input
-                  className="appearance-none w-full py-3 px-5 text-lg focus:outline-none focus-whithin:ring"
+                  className="w-full px-5 py-3 text-lg appearance-none focus:outline-none focus-whithin:ring"
                   type="search"
                   name="q"
                   id="q"
@@ -92,7 +106,7 @@ const Home = () => {
                 />
                 <button
                   type="submit"
-                  className="py-1 px-4 focus:outline-none focus:shadow-outline text-gray-600"
+                  className="px-4 py-1 text-gray-600 focus:outline-none focus:shadow-outline"
                 >
                   <svg
                     fill="none"
@@ -114,10 +128,10 @@ const Home = () => {
                     <li key={index}>
                       <a
                         href={`/slang/${res.slug || ""}`}
-                        className="grid grid-flow-col grid-cols-3 max-h-64 p-4 hover:bg-gray-100 focus:bg-gray-100 rounded group"
+                        className="grid grid-flow-col grid-cols-3 p-4 rounded max-h-64 hover:bg-gray-100 focus:bg-gray-100 group"
                       >
-                        <div className="mr-4 col-span-2">
-                          <h2 className="font-semibold text-3xl tracking-wide group-hover:underline">
+                        <div className="col-span-2 mr-4">
+                          <h2 className="text-3xl font-semibold tracking-wide group-hover:underline">
                             {res.name}
                           </h2>
                           <p className="no-underline overflow-ellipsis">
@@ -138,10 +152,10 @@ const Home = () => {
               )}
             </div>
           </section>
-          {/* <h1 className="uppercase font-black tracking-wider dark:text-gray-200 text-gray-800 line-top">
+          {/* <h1 className="font-black tracking-wider text-gray-800 uppercase dark:text-gray-200 line-top">
             Sökresultat
           </h1> */}
-          {/* <button className="btn green-gradient mt-4">Press me!</button> */}
+          {/* <button className="mt-4 btn green-gradient">Press me!</button> */}
         </div>
       </main>
     </Layout>
