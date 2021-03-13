@@ -96,28 +96,19 @@ const categories = [
 const homeCategories = [
   {
     name: "Brännbart",
-    excerpt:
-      "Restavfallet är det som blir kvar när förpackningar och mat är utsorterat. Avfallet förbränns och blir till fjärrvärme och el till bostäder.",
+    excerpt: "Restavfallet är det som blir kvar när förpackningar och mat är utsorterat.",
     slug: "brännbart",
     thumbnailUrl:
       "https://www.rambo.se/wp-content/uploads/2017/01/restavfall-e1484211223981.jpg.webp",
-    image: {
-      url: "https://www.rambo.se/wp-content/uploads/2017/01/restavfall-e1484211223981.jpg.webp",
-      width: 520,
-      height: 325,
-    },
+    imageUrl: "https://www.rambo.se/wp-content/uploads/2017/01/restavfall-e1484211223981.jpg.webp",
   },
   {
     name: "Matavfall",
     excerpt:
-      "Om du har möjlighet kan du sortera ut matavfallet och kompostera det i en egen hemkompost. Bor du i Lysekils, Munkedal eller Tanums kommuner kan du få separat hämtning av matavfall och bidra till en bättre miljö.",
+      "Om du har möjlighet kan du sortera ut matavfallet och kompostera det i en egen hemkompost eller få sophämtning för det.",
     slug: "matavfall",
     thumbnailUrl: "https://www.rambo.se/wp-content/uploads/2017/01/matavfall-520x325.jpg.webp",
-    image: {
-      url: "https://www.rambo.se/wp-content/uploads/2017/01/matavfall-520x325.jpg.webp",
-      width: 520,
-      height: 325,
-    },
+    imageUrl: "https://www.rambo.se/wp-content/uploads/2017/01/matavfall-520x325.jpg.webp",
   },
 ]
 

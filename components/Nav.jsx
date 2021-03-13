@@ -36,7 +36,7 @@ const Nav = ({ refrence }) => (
       <ActiveLink activeClassName="active" href="/sorteringsguide">
         <a className="navbtn">
           <i className="block material-icons md:hidden">help</i>
-          <span className="hidden md:block">Vart slängs vad?</span>
+          <span className="hidden md:block">Sorteringsguide</span>
           <span className="block md:hidden">Hur</span>
         </a>
       </ActiveLink>

@@ -34,7 +34,7 @@ const Foot = () => (
       </div>
     </div>
     <footer className="text-gray-800 bg-gray-100" id="footer">
-      <div className="flex flex-col justify-between max-w-4xl p-12 mx-auto space-y-3 sm:flex-row sm:space-y-0 sm:space-x-6">
+      <div className="flex flex-col justify-between max-w-4xl p-8 mx-auto space-y-3 sm:flex-row sm:space-y-0 sm:space-x-6">
         <FooterLinks title="Hur sorterar man?" href="/sorteringsguide">
           {categories.map((elem) => (
             <Link href={`/sorteringsguide#${elem.slug}`} key={elem.slug}>
