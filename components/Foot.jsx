@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { categories } from "../categories"
+import { categories } from "data/categories"
 
 const FooterLinks = ({ title, href = "", children, ...props }) => (
   <div className="flex flex-col items-start">
@@ -56,23 +56,23 @@ const Foot = () => (
         </FooterLinks>
 
         <div className="flex flex-col items-start space-y-4">
-          <Link href="/kontakt">
-            <a className="link">Kontakta oss</a>
+          <Link href="/lasmer#kontakt">
+            <a className="link">Något fel på sidan?</a>
           </Link>
           <div>
             <div>
-              Information hämtad från{" "}
-              <a href="https://rambo.se" className="link" target="_blank">
+              Information om källsortering hämtad från{" "}
+              <a href="https://rambo.se" className="link" target="_blank" rel="noopener">
                 rambo.se
               </a>
             </div>
             <div>
               Bilder tagna från{" "}
-              <a href="https://unsplash.com/" className="link" target="_blank">
+              <a href="https://unsplash.com/" className="link" target="_blank" rel="noopener">
                 unsplash.com
               </a>{" "}
               och{" "}
-              <a href="https://rambo.se" className="link" target="_blank">
+              <a href="https://rambo.se" className="link" target="_blank" rel="noopener">
                 rambo.se
               </a>
             </div>
@@ -84,6 +84,7 @@ const Foot = () => (
               href="https://github.com/elias123tre/slangratt"
               title="GitHub sida för webbplatsen"
               target="_blank"
+              rel="noopener"
             >
               <svg
                 className="h-12"

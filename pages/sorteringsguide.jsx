@@ -1,33 +1,44 @@
 import Layout from "components/Layout"
 import Image from "next/image"
-import { categories, homeCategories } from "../categories"
+import Link from "next/link"
+import { categories, homeCategories } from "data/categories"
 
 const Sorteringsguide = () => (
   <Layout title="Släng rätt - Sorteringsguide">
-    <main>
-      <section className="flex flex-col items-center max-w-5xl gap-12 p-4 mx-auto text-white xl:gap-32 sm:flex-col lg:py-12">
+    <main className="flex-1">
+      <section className="flex flex-col items-center max-w-4xl gap-12 p-4 mx-auto text-white xl:max-w-5xl xl:gap-32 sm:flex-col lg:py-12">
         <div className="flex flex-col gap-6">
-          <div className="flex flex-col gap-6 sm:flex-row">
+          <div className="flex flex-col gap-6 md:gap-16 sm:flex-row">
             <article className="flex-1">
               <div>
                 <h1 className="text-3xl font-semibold tracking-wide">Källsortera hemma</h1>
                 <p>
                   Ett av de enklaste sätten att källsortera, och det som folk ofta börjar med, är
-                  att separera matavfall. En del lägger matavfallet i en hemkompost på tomten.
+                  att separera matavfall. En del lägger matavfallet i en hemkompost på tomten och
+                  andra får den hämtad i samband med sophämtningen. Om man verkligen inte vill
+                  källsortera mer slänger man resterande avfall i brännbart/restavfall, annars
+                  sorterar man hemma och lämnar sedan skräpet på en återvinningsstation.
                 </p>
               </div>
             </article>
             <article className="flex-1">
               <h1 className="text-3xl font-semibold tracking-wide">Lämna på återvinningsstation</h1>
               <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error quod iure,
-                consequatur quasi fugiat neque a perferendis esse quidem tempora quaerat.
+                Det är mycket enkelt att sortera skräpet i olika kärl och lådor hemma. Därefter kan
+                man helt enkelt åka med det till närmaste återvinningsstation. Det är ett enkelt
+                sätt att bidra till en hälsosammare miljö och det krävs bara lite betänketid när du
+                slänger något, inte så farligt va?
               </p>
+              <Link href="/sorteringsstationer">
+                <a className="mt-2 text-lg bg-white btn text-primary-darker whitespace-nowrap">
+                  Hitta återvinningsstation &rarr;
+                </a>
+              </Link>
             </article>
           </div>
           <article>
             <h1 className="text-3xl font-semibold tracking-wide">Sophämtning</h1>
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="flex flex-col gap-6 md:gap-16 sm:flex-row">
               {homeCategories.map((elem) => (
                 <div
                   className="flex flex-col flex-1 p-3 overflow-hidden text-gray-900 bg-white rounded-lg shadow-md"

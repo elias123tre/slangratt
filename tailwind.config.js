@@ -98,5 +98,5 @@ module.exports = {
       textColor: ["active"],
     },
   },
-  plugins: [require("@tailwindcss/line-clamp")],
+  plugins: [require("@tailwindcss/line-clamp"), require("tailwindcss-hyphens")],
 }

@@ -3,6 +3,8 @@ import Nav from "components/Nav"
 import Foot from "components/Foot"
 import { useEffect, useRef, useState } from "react"
 
+const APP_COLOR = "#00a850"
+
 const PageLayout = ({
   children,
   title = "Släng rätt!",
@@ -33,11 +35,15 @@ const PageLayout = ({
       <Head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
+        />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href={
-            "https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
+            "https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
           }
           rel="stylesheet"
           type="text/css"
@@ -48,19 +54,46 @@ const PageLayout = ({
           type="text/css"
         />
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <meta name="application-name" content={title} />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content={title} />
+        <meta name="description" content={description} />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="theme-color" content={APP_COLOR} />
+        <meta name="msapplication-TileColor" content={APP_COLOR} />
+        <meta name="msapplication-tap-highlight" content="no" />
+
+        <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color={APP_COLOR} />
+        <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+        <link rel="shortcut icon" href="/icons/favicon.ico" />
         <link rel="manifest" href="/site.webmanifest" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#00a850" />
-        <meta name="apple-mobile-web-app-title" content="Sl&auml;ng r&auml;tt!" />
-        <meta name="application-name" content="Sl&auml;ng r&auml;tt!" />
-        <meta name="msapplication-TileColor" content="#00a850" />
-        <meta name="theme-color" content="#00a850" />
+
+        <meta name="twitter:card" content={description} />
+        <meta name="twitter:url" content="https://slangratt.floreteng.se" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta
+          name="twitter:image"
+          content="https://slangratt.floreteng.se/icons/android-chrome-192x192.png"
+        />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:site_name" content="Släng rätt!" />
+        <meta property="og:url" content="https://slangratt.floreteng.se" />
+        <meta
+          property="og:image"
+          content="https://slangratt.floreteng.se/icons/apple-touch-icon.png"
+        />
 
         <title>{title}</title>
         <meta name="description" content={description}></meta>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        {/* <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> */}
       </Head>
 
       {/* <div className="bg-top bg-cover bg-gradient dark:bg-left dark:bg-dark-gradient"> */}
@@ -97,7 +130,7 @@ const PageLayout = ({
                 })
         </script> */}
 
-        <div className="min-h-screen">
+        <div className="flex flex-col items-center min-h-screen">
           <Nav refrence={ref} />
 
           {children}

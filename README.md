@@ -64,10 +64,6 @@ _eller_
 npm run build
 ```
 
-### Frivilligt: Exportera till statiska filer
-
-`yarn export` respektive `npm run export` för att skapa statiska html, css & js filer som sedan kan hittas i `/out` mappen
-
 ### Dynamisk produktions-server
 
-Det går även att starta en dynamisk instans i production med `yarn start` respektive `npm run start` efter att kompileringen gjorts
+Det går även att starta en dynamisk instans i production med `yarn preview` respektive `npm run preview` där webbservern startas på port 80

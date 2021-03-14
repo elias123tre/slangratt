@@ -42,9 +42,21 @@
 }
 
 @layer components {
-  .link {
-    @apply text-lightblue-600 active:text-lightblue-500 focus:text-lightblue-500 hover:underline;
+  .link,
+  .link::before,
+  .link::after {
+    @apply text-lightblue-600;
   }
+  .link {
+    @apply active:text-lightblue-500 focus:text-lightblue-500 hover:underline;
+  }
+  .external::after {
+    content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='rgba(2, 132, 199)'><path d='M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z'></path><path d='M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z'></path></svg>");
+    @apply inline-block ml-1;
+    height: 1em;
+    width: 1em;
+  }
+
   .infobox {
     @apply z-0 flex items-center justify-center w-full h-24 p-2 text-2xl font-semibold tracking-wider text-center text-white truncate duration-500 transform bg-black bg-opacity-25 bg-center bg-cover shadow-md md:h-28 lg:h-40 lg:w-1/5 lg:text-xl rounded-2xl transition-textshadow hover:-translate-y-1 xl:text-opacity-0 xl:hover:text-opacity-100 text-shadow xl:text-shadow-none xl:hover:text-shadow;
   }
@@ -55,7 +67,7 @@
     @apply opacity-80;
   }
   .btn {
-    @apply px-5 py-3 font-semibold text-white duration-200 rounded shadow transition-bg hover:bg-opacity-90;
+    @apply inline-block px-5 py-3 font-semibold text-white duration-200 rounded shadow transition-bg hover:bg-opacity-90;
     background-size: 200% 100%;
     background-position: 0% 0;
   }

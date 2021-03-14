@@ -2,7 +2,7 @@ import Link from "next/link"
 import ActiveLink from "./ActiveLink"
 
 const Nav = ({ refrence }) => (
-  <header className="sticky top-0 z-50 flex items-center justify-between p-4 bg-white shadow-lg dark:bg-gray-800 md:space-x-4">
+  <header className="sticky top-0 z-50 flex items-center justify-between w-full p-4 bg-white shadow-lg dark:bg-gray-800 md:space-x-4">
     <Link href="/">
       <a className="inline-flex items-center text-3xl font-semibold text-gray-800 transition dark:text-white duration-400 hover:underline">
         <svg
@@ -49,8 +49,8 @@ const Nav = ({ refrence }) => (
       </ActiveLink>
     </nav>
 
-    <ActiveLink activeClassName="" href="/kontakt">
-      <a className="leading-5 rounded-full btn green-gradient">Kontakt</a>
+    <ActiveLink activeClassName="" href="/lasmer">
+      <a className="leading-5 rounded-full btn green-gradient">Fler resurser</a>
     </ActiveLink>
 
     <script>
