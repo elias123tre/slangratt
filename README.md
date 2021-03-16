@@ -1,6 +1,6 @@
 # Släng rätt!
 
-En sida som underlättar soppsortering för privatpersoner genom sökfunktion och sorteringstips.
+En sida som underlättar sopsortering för privatpersoner genom sökfunktion och sorteringstips.
 
 _Detta är ett gymnasiearbete skapat av Elias Floreteng & Noh Ghareeb._
 
