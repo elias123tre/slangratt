@@ -59,14 +59,14 @@ const Foot = () => (
           <Link href="/lasmer#kontakt">
             <a className="link">Något fel på sidan?</a>
           </Link>
-          <div>
-            <div>
+          <ul className="list-inside list-chevron">
+            <li>
               Information om källsortering hämtad från{" "}
               <a href="https://rambo.se" className="link" target="_blank" rel="noopener">
                 rambo.se
               </a>
-            </div>
-            <div>
+            </li>
+            <li>
               Bilder tagna från{" "}
               <a href="https://unsplash.com/" className="link" target="_blank" rel="noopener">
                 unsplash.com
@@ -75,8 +75,18 @@ const Foot = () => (
               <a href="https://rambo.se" className="link" target="_blank" rel="noopener">
                 rambo.se
               </a>
-            </div>
-          </div>
+            </li>
+            <li>
+              Sorteringsstationer hämtas från{" "}
+              <a href="https://maps.google.com/" className="link" target="_blank" rel="noopener">
+                Google Maps
+              </a>
+              {" och "}
+              <a href="https://www.ftiab.se/" className="link" target="_blank" rel="noopener">
+                <abbr title="Förpacknings- och tidningsinsamlingen">FTI</abbr>
+              </a>
+            </li>
+          </ul>
           <div>
             <div>Skapat av Elias Floreteng &amp; Noh Ghareeb</div>
             <a

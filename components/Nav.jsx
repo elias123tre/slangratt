@@ -50,13 +50,10 @@ const Nav = ({ refrence }) => (
     </nav>
 
     <ActiveLink activeClassName="" href="/lasmer">
-      <a className="leading-5 rounded-full btn green-gradient">Fler resurser</a>
+      <a className="leading-5 rounded-full btn bg-gradient-to-r from-[#0fd95c] via-[#00a850] to-[#008a47]">
+        Fler resurser
+      </a>
     </ActiveLink>
-
-    <script>
-      {/* function scaleFooter() {$("#footer").css("margin-bottom", $("#menu").outerHeight())}
-              $(document).ready(scaleFooter) $(window).resize(scaleFooter) scaleFooter() */}
-    </script>
   </header>
 )
 

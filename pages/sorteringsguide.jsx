@@ -1,11 +1,10 @@
 import Layout from "components/Layout"
-import Image from "next/image"
 import Link from "next/link"
 import { categories, homeCategories } from "data/categories"
 
 const Sorteringsguide = () => (
   <Layout title="Släng rätt - Sorteringsguide">
-    <main className="flex-1">
+    <main className="flex-1 w-full">
       <section className="flex flex-col items-center max-w-4xl gap-12 p-4 mx-auto text-white xl:max-w-5xl xl:gap-32 sm:flex-col lg:py-12">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-6 md:gap-16 sm:flex-row">
@@ -40,20 +39,23 @@ const Sorteringsguide = () => (
             <h1 className="text-3xl font-semibold tracking-wide">Sophämtning</h1>
             <div className="flex flex-col gap-6 md:gap-16 sm:flex-row">
               {homeCategories.map((elem) => (
-                <div
+                <a
                   className="flex flex-col flex-1 p-3 overflow-hidden text-gray-900 bg-white rounded-lg shadow-md"
                   key={elem.slug}
+                  href={elem.link}
+                  target="_blank"
+                  rel="noopener"
                 >
                   <img className="object-cover mb-1" src={elem.imageUrl} alt="" />
                   <h2 className="text-lg">{elem.name}</h2>
                   <p className="text-gray-500">{elem.excerpt}</p>
-                </div>
+                </a>
               ))}
             </div>
           </article>
         </div>
       </section>
-      <section className="flex flex-col">
+      <section className="flex flex-col w-full">
         <a href="#kategorier">
           <h1 className="mb-0 text-4xl font-bold text-center text-white md:text-5xl font-display">
             På återvinnings&shy;stationen
@@ -68,26 +70,17 @@ const Sorteringsguide = () => (
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </a>
-        <div
-          className="flex flex-col max-w-full bg-white divide-y-4 divide-primary"
-          id="kategorier"
-        >
+        <div className="flex flex-col bg-white divide-y-4 divide-primary" id="kategorier">
           {categories.map((elem, index) => (
             <div
-              className={`flex flex-col justify-between items-center ${
+              className={`flex flex-col justify-between ${
                 index % 2 ? "bg-green-50 sm:flex-row-reverse" : "bg-white sm:flex-row"
               }`}
               id={elem.slug}
               key={elem.slug}
             >
-              <Image
-                src={elem.imageUrl}
-                alt=""
-                width={960}
-                height={720}
-                className="flex-auto object-cover w-full"
-              />
-              <div className="flex-auto p-8 md:p-24">
+              <img src={elem.imageUrl} alt="" className="flex-shrink-0 object-cover sm:w-1/2" />
+              <div className="flex-1 p-8 md:p-24">
                 {elem?.icon && (
                   <div className="box-content w-8 h-8 p-3 mb-4 text-white rounded-full bg-primary">
                     {elem.icon}
@@ -96,6 +89,14 @@ const Sorteringsguide = () => (
 
                 <h2>{elem.name}</h2>
                 <p>{elem.excerpt}</p>
+                <a
+                  className="mt-2 text-lg bg-white btn text-primary-darker external-green"
+                  href={elem.imageUrl}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Sorteringstips för <span className="lowercase">{elem.name}</span>
+                </a>
               </div>
             </div>
           ))}

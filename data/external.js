@@ -35,6 +35,13 @@ const resources = [
     imageUrl: "https://www.ragnsells.se/globalassets/sverige/ragn-sells-logo-web.svg",
     link: "https://ragnsells.se",
   },
+  {
+    name: "SRV",
+    text: "Återvinningsstationer & sophämtning i södertörn",
+    imageUrl:
+      "https://www.srvatervinning.se/images/18.d9ec095172e6db9637a3a3e/1599220557843/logo-color.svg",
+    link: "https://www.srvatervinning.se/",
+  },
 ]
 
 export { resources }

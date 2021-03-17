@@ -5,42 +5,25 @@ module.exports = {
   purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class", // false or 'media' or 'class'
   theme: {
-    container: {
-      center: true,
-      padding: {
-        DEFAULT: "1rem",
-        sm: "2rem",
-        lg: "4rem",
-        xl: "5rem",
-        "2xl": "6rem",
+    colors: {
+      transparent: "transparent",
+      current: "currentColor",
+
+      black: colors.black,
+      white: colors.white,
+      gray: colors.coolGray,
+      lightblue: colors.lightBlue,
+      green: colors.emerald,
+
+      primary: {
+        lighter: "#00db6a",
+        DEFAULT: "#00a850",
+        darker: "#007539",
       },
     },
     extend: {
-      colors: {
-        primary: {
-          lighter: "#00db6a",
-          DEFAULT: "#00a850",
-          darker: "#007539",
-        },
-        orange: colors.orange,
-        amber: colors.amber,
-        lime: colors.lime,
-        emerald: colors.emerald,
-        teal: colors.teal,
-        lightblue: colors.lightBlue,
-      },
-      backgroundColor: {
-        primary: {
-          lighter: "#00db6a",
-          DEFAULT: "#00a850",
-          darker: "#007539",
-        },
-        orange: colors.orange,
-        amber: colors.amber,
-        lime: colors.lime,
-        emerald: colors.emerald,
-        teal: colors.teal,
-        lightblue: colors.lightBlue,
+      listStyleType: {
+        chevron: '"❯ "',
       },
       transitionProperty: {
         height: "max-height",
@@ -53,16 +36,6 @@ module.exports = {
         // sans: ["Roboto", "Arial", "sans-serif"],
         sans: ["Roboto", ...defaultTheme.fontFamily.sans],
         display: ["Inter", ...defaultTheme.fontFamily.sans],
-      },
-      gradientColorStops: {
-        lime: "#0fd95c",
-        primary: "#00a850",
-        darkgreen: "#008a47",
-      },
-      backgroundImage: {
-        gradient: "url(https://products.ls.graphics/mesh-gradients/images/89.-Canvas_1.jpg)",
-        "dark-gradient":
-          "url(https://products.ls.graphics/mesh-gradients/images/100.-Chetwode-Blue.jpg)",
       },
       screens: {
         print: {
@@ -89,14 +62,42 @@ module.exports = {
         "screen-4/6": "66.666667vh",
         "screen-5/6": "83.333333vh",
       },
+      minHeight: {
+        "screen-1/2": "50vh",
+        "screen-1/3": "33.333333vh",
+        "screen-2/3": "66.666667vh",
+        "screen-1/4": "25vh",
+        "screen-2/4": "50vh",
+        "screen-3/4": "75vh",
+        "screen-1/5": "20vh",
+        "screen-2/5": "40vh",
+        "screen-3/5": "60vh",
+        "screen-4/5": "80vh",
+        "screen-1/6": "16.666667vh",
+        "screen-2/6": "33.333333vh",
+        "screen-3/6": "50vh",
+        "screen-4/6": "66.666667vh",
+        "screen-5/6": "83.333333vh",
+      },
+      maxHeight: {
+        "screen-1/2": "50vh",
+        "screen-1/3": "33.333333vh",
+        "screen-2/3": "66.666667vh",
+        "screen-1/4": "25vh",
+        "screen-2/4": "50vh",
+        "screen-3/4": "75vh",
+        "screen-1/5": "20vh",
+        "screen-2/5": "40vh",
+        "screen-3/5": "60vh",
+        "screen-4/5": "80vh",
+        "screen-1/6": "16.666667vh",
+        "screen-2/6": "33.333333vh",
+        "screen-3/6": "50vh",
+        "screen-4/6": "66.666667vh",
+        "screen-5/6": "83.333333vh",
+      },
     },
   },
-  variants: {
-    extend: {
-      backgroundImage: ["dark"],
-      backgroundPosition: ["dark"],
-      textColor: ["active"],
-    },
-  },
-  plugins: [require("@tailwindcss/line-clamp"), require("tailwindcss-hyphens")],
+  variants: {},
+  plugins: [require("@tailwindcss/line-clamp"), require("@tailwindcss/forms")],
 }
