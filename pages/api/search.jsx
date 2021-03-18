@@ -9,7 +9,7 @@ const sorting = [
 export default function handler(req, res) {
   console.log(`Request: ${req.method} ${req.url}`)
 
-  const query = new URLSearchParams().get("q") ?? ""
+  const query = new URLSearchParams(req.query).get("q") ?? ""
   console.log(`Search query: ${query}`)
 
   let filtered = sorting.filter((entry) => entry.name.toLowerCase().includes(query.toLowerCase()))

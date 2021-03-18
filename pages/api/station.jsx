@@ -28,7 +28,7 @@ export default async function handler(req, res) {
 
   const stationEntries = Object.entries(station).map(([key, val]) => [
     key,
-    val.replaceAll("*", "enligt schema"),
+    val.replace(/\*/gi, "enligt schema"),
   ])
 
   await res.status(200).json(Object.fromEntries(stationEntries))

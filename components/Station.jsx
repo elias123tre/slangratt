@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 
 const Station = ({ elem, icons }) => {
   const [info, setInfo] = useState("")
-
-  // useEffect(() => {
-  //   setInfo("")
-  // })
 
   return (
     <button
@@ -37,7 +33,7 @@ const Station = ({ elem, icons }) => {
           })}
         </div>
       </div>
-      {info == null ? (
+      {info === null ? (
         <svg
           className="w-6 h-6 mx-auto animate-spin text-primary"
           xmlns="http://www.w3.org/2000/svg"

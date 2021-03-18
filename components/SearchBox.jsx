@@ -63,7 +63,6 @@ const SearchBox = () => {
           placeholder="Hur slänger man..."
           autoComplete="off"
           ref={searchRef}
-          onChange={search}
           onInput={search}
         />
         <button
