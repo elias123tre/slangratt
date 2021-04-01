@@ -23,13 +23,22 @@ export default async function handler(req, res) {
       mode: "cors",
     }
   )
-  const data = await response.json()
-  const station = JSON.parse(data["d"])
+  try {
+    const data = await response.json().catch((err) => {
+      console.error("Error while parsing staion data:", err)
+      console.error(response)
+      throw err
+    })
+    const station = JSON.parse(data["d"])
 
-  const stationEntries = Object.entries(station).map(([key, val]) => [
-    key,
-    val.replace(/\*/gi, "enligt schema"),
-  ])
+    const stationEntries = Object.entries(station).map(([key, val]) => [
+      key,
+      val.replace(/\*/gi, "enligt schema"),
+    ])
 
-  await res.status(200).json(Object.fromEntries(stationEntries))
+    await res.status(200).json(Object.fromEntries(stationEntries))
+  } catch (err) {
+    console.error(err)
+    await res.status(403).json({})
+  }
 }

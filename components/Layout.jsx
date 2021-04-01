@@ -40,19 +40,16 @@ const PageLayout = ({
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
         />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link
           href={
-            "https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
+            "https://fonts.googleapis.com/css2?family=Inter:wght@400..900&family=Roboto:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,700&display=swap"
           }
           rel="stylesheet"
           type="text/css"
         />
-        <link
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet"
-          type="text/css"
-        />
+        {/* https://fonts.googleapis.com/css2?family=Inter:wght@400..900&family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700;1,800&display=swap */}
 
         <meta name="application-name" content={title} />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -61,7 +58,7 @@ const PageLayout = ({
         <meta name="description" content={description} />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="theme-color" content={APP_COLOR} />
+        <meta name="theme-color" content="#ffffff" />
         <meta name="msapplication-TileColor" content={APP_COLOR} />
         <meta name="msapplication-tap-highlight" content="no" />
 
@@ -101,35 +98,6 @@ const PageLayout = ({
         className="bg-top bg-cover bg-gradient-to-bl from-green-200 via-green-400 to-green-500"
         style={{ marginBottom: footerOffset }}
       >
-        {/* <script>
-          function theme(newtheme) {
-                    $("#themeswitcher").children().removeClass("text-primary")
-                    switch (newtheme) {
-                        case 'light':
-                            localStorage.theme = 'light'
-                            $("#themeswitcher > #light").addClass("text-primary")
-                            break;
-                        case 'dark':
-                            localStorage.theme = 'dark'
-                            $("#themeswitcher > #dark").addClass("text-primary")
-                            break;
-                        default:
-                            localStorage.removeItem('theme')
-                            $("#themeswitcher > #auto").addClass("text-primary")
-                    }
-        
-                    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                        document.querySelector('html').classList.add('dark')
-                    } else {
-                        document.querySelector('html').classList.remove('dark')
-                    }
-                }
-                theme(localStorage.theme)
-                $(document).ready(function () {
-                    theme(localStorage.theme)
-                })
-        </script> */}
-
         <div className="flex flex-col items-center min-h-screen">
           <Nav refrence={ref} />
 

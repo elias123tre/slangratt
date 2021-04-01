@@ -34,7 +34,7 @@ module.exports = {
       },
       fontFamily: {
         // sans: ["Roboto", "Arial", "sans-serif"],
-        sans: ["Roboto", ...defaultTheme.fontFamily.sans],
+        sans: ['"Roboto"', ...defaultTheme.fontFamily.sans],
         display: ["Inter", ...defaultTheme.fontFamily.sans],
       },
       screens: {

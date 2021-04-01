@@ -9,7 +9,7 @@ const Station = ({ elem, icons }) => {
       className="cursor-pointer block text-left w-full p-1.5 bg-white rounded-sm shadow-lg text-primary-darker focus:outline-none"
       onClick={async (e) => {
         setInfo(null)
-        const response = await fetch(`/api/station?id=${encodeURI(elem.Id)}`)
+        const response = await fetch(`/api/station?id=${encodeURIComponent(elem.Id)}`)
         const locationInfo = await response.json()
 
         setInfo(locationInfo)

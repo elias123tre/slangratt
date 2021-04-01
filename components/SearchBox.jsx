@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react"
+import { categories, homeCategories } from "data/categories"
+const allCategories = categories.concat(homeCategories)
 
 const SearchBox = () => {
   const searchRef = useRef()
@@ -109,27 +111,52 @@ const SearchBox = () => {
 
       {searchResults?.length ? (
         <ol id="results" className="p-4 space-y-2">
-          {searchResults.map((res, index) => (
-            <li key={index}>
-              <a
-                href={`/slang/${res.slug || ""}`}
-                className="flex flex-col p-4 rounded hover:bg-gray-100 focus:bg-gray-100 group"
-              >
-                <h2 className="font-semibold tracking-wide break-all sm:text-3xl group-hover:underline">
-                  {res.name}
-                </h2>
-                <div className="flex">
-                  <p className="flex-1 no-underline overflow-ellipsis line-clamp-3">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, harum.Lorem
-                    ipsum dolor sit amet consectetur adipisicing elit.Consectetur quae eligendi
-                    totam magnam quisquam saepe beatae voluptatibus cumque sit, numquam ut nihil
-                    accusamus culpa deserunt tempora dolores sequi dolor nobis?
-                  </p>
-                  <img className="w-24" src="/page_not_found.svg" alt="" />
+          {searchResults.map(({ name, slug, category, text, service, link = "" }) => {
+            const icon = allCategories.find((elem) => elem.slug == category.slug)?.icon
+            return (
+              <li key={slug}>
+                <div className="flex p-4 space-x-3 rounded hover:bg-gray-100 focus:bg-gray-100">
+                  <div className="flex flex-col flex-1">
+                    <a href={link} target="_blank" rel="noopener noreferrer" className="mb-0.5">
+                      <h2 className="font-semibold tracking-wide break-all sm:text-3xl hover:underline">
+                        {name}
+                      </h2>
+                    </a>
+                    {category?.text && (
+                      <a
+                        className="flex items-center mb-2 hover:underline"
+                        href={
+                          category?.slug
+                            ? `/sorteringsguide#${category.slug}`
+                            : "https://www.rambo.se/privat/sorteringsguide/"
+                        }
+                      >
+                        <div className="text-lg text-gray-600">{category.text}</div>
+                        {icon && (
+                          <div className="ml-2 box-content w-5 h-5 p-1.5 text-white rounded-full bg-primary shadow">
+                            {icon}
+                          </div>
+                        )}
+                      </a>
+                    )}
+                    <p className="no-underline overflow-ellipsis line-clamp-3">{text}</p>
+                  </div>
+
+                  <div>
+                    <a
+                      href={service.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex flex-col items-center justify-between h-full link"
+                    >
+                      <img className="w-32" src="/page_not_found.svg" alt="" />
+                      {service?.title && <div className="external">{service.title}</div>}
+                    </a>
+                  </div>
                 </div>
-              </a>
-            </li>
-          ))}
+              </li>
+            )
+          })}
         </ol>
       ) : (
         (status.error || searchResults?.length === 0) && (

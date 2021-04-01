@@ -44,14 +44,11 @@ const Foot = () => (
         </FooterLinks>
 
         <FooterLinks title="Vart sorterar man?" href="/sorteringsstationer">
-          <Link href="/sorteringsstationer#sorteringsstationer">
-            <a className="hover:text-gray-900">Sorteringsstationer</a>
+          <Link href="/sorteringsstationer#naramig">
+            <a className="hover:text-gray-900">Nära mig</a>
           </Link>
-          <Link href="/sorteringsstationer#återvinningsstationer">
-            <a className="hover:text-gray-900">Återvinningsstationer</a>
-          </Link>
-          <Link href="/sorteringsstationer#sorterahemma">
-            <a className="hover:text-gray-900">Sortera hemma</a>
+          <Link href="/sorteringsstationer#municipality">
+            <a className="hover:text-gray-900">I min kommun</a>
           </Link>
         </FooterLinks>
 
@@ -97,7 +94,7 @@ const Foot = () => (
               rel="noopener"
             >
               <svg
-                className="h-12"
+                className="w-12 h-12"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"

@@ -31,5 +31,6 @@ export default async function handler(req, res) {
   const stations = JSON.parse(data["d"])
 
   // console.log(stations)
+  await res.setHeader("Cache-Control", "s-maxage=86400, stale-while-revalidate")
   await res.status(200).json(stations)
 }

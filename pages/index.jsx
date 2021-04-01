@@ -2,7 +2,6 @@ import Layout from "components/Layout"
 import Link from "next/link"
 import { categories } from "data/categories"
 import SearchBox from "components/SearchBox"
-import InstallPWA from "components/InstallPWA"
 
 const InfoBox = ({ href, children, bgClass, bgImage = "", ...props }) => (
   <Link href={href}>
@@ -20,28 +19,12 @@ const Home = () => {
   return (
     <Layout title="Släng rätt!">
       <main className="flex-1 max-w-5xl px-4 my-8 dark:text-white" id="main">
-        {/* <div
-          className="absolute flex items-center justify-center p-2 -mt-3 space-x-1 text-gray-800 bg-white rounded-full shadow right-4 dark:bg-gray-800 dark:text-white"
-          id="themeswitcher"
-        >
-          <button id="light">
-            <i className="h-full material-icons">wb_sunny</i>
-          </button>
-          <button id="auto">
-            <i className="h-full material-icons">brightness_auto</i>
-          </button>
-          <button id="dark">
-            <i className="h-full material-icons">brightness_2</i>
-          </button>
-        </div> */}
-
         <div className="mx-auto">
           <section
             className="mx-auto overflow-hidden text-center text-gray-100 duration-500 transition-height"
             id="jumbo"
           >
             <div className="grid md:p-12 place-items-center">
-              <InstallPWA />
               <h1 className="p-2 mb-6 text-5xl italic font-black tracking-wider uppercase break-word md:mt-6 md:text-6xl">
                 {/* text-gradient */}
                 Släng skräpet i rätt kärl!

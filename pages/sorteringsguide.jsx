@@ -42,6 +42,7 @@ const Sorteringsguide = () => (
                 <a
                   className="flex flex-col flex-1 p-3 overflow-hidden text-gray-900 bg-white rounded-lg shadow-md"
                   key={elem.slug}
+                  id={elem.slug}
                   href={elem.link}
                   target="_blank"
                   rel="noopener"
@@ -55,8 +56,9 @@ const Sorteringsguide = () => (
           </article>
         </div>
       </section>
+
       <section className="flex flex-col w-full">
-        <a href="#kategorier">
+        <a href="#kategorier" className="p-2">
           <h1 className="mb-0 text-4xl font-bold text-center text-white md:text-5xl font-display">
             På återvinnings&shy;stationen
           </h1>
@@ -71,31 +73,31 @@ const Sorteringsguide = () => (
           </svg>
         </a>
         <div className="flex flex-col bg-white divide-y-4 divide-primary" id="kategorier">
-          {categories.map((elem, index) => (
+          {categories.map(({ slug, imageUrl, icon, name, excerpt, link }, index) => (
             <div
               className={`flex flex-col justify-between ${
                 index % 2 ? "bg-green-50 sm:flex-row-reverse" : "bg-white sm:flex-row"
               }`}
-              id={elem.slug}
-              key={elem.slug}
+              id={slug}
+              key={slug}
             >
-              <img src={elem.imageUrl} alt="" className="flex-shrink-0 object-cover sm:w-1/2" />
-              <div className="flex-1 p-8 md:p-24">
-                {elem?.icon && (
+              <img src={imageUrl} alt="" className="flex-shrink-0 object-cover sm:w-1/2" />
+              <div className="self-center flex-1 p-8 md:p-24">
+                {icon && (
                   <div className="box-content w-8 h-8 p-3 mb-4 text-white rounded-full bg-primary">
-                    {elem.icon}
+                    {icon}
                   </div>
                 )}
 
-                <h2>{elem.name}</h2>
-                <p>{elem.excerpt}</p>
+                <h2>{name}</h2>
+                <p>{excerpt}</p>
                 <a
-                  className="mt-2 text-lg bg-white btn text-primary-darker external-green"
-                  href={elem.imageUrl}
+                  className="block mt-2 text-lg font-semibold tracking-wide text-primary-darker external-green"
+                  href={link}
                   target="_blank"
                   rel="noopener"
                 >
-                  Sorteringstips för <span className="lowercase">{elem.name}</span>
+                  ❯ Sorteringstips för <span className="lowercase">{name}</span>
                 </a>
               </div>
             </div>

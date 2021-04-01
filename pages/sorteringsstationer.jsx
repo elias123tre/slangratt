@@ -15,14 +15,19 @@ const Sorteringsstationer = () => {
   return (
     <Layout title="Släng rätt - Sorteringsstationer">
       <main className="flex flex-col w-full max-w-6xl px-4 mt-6 text-white sm:min-h-screen-2/3 md:min-h-screen-5/6">
-        <h1 className="text-3xl font-semibold tracking-wide sm:text-4xl">
+        <h1 className="text-3xl font-semibold tracking-wide sm:text-4xl" id="naramig">
           Sorterings&shy;stationer nära dig
         </h1>
         <p className="mb-2">
           Klicka på markörerna för att se adress och vägbeskrivning. Endast de närmaste
           sorteringsstationerna visas på denna karta.
           <br />
-          <a href="https://maps.google.com/?q=Recycling%20center" className="link external">
+          <a
+            href="https://maps.google.com/?q=Recycling%20center"
+            className="link external"
+            target="_blank"
+            rel="noopener"
+          >
             Se alla sorteringsstationer i helskärm
           </a>
         </p>
@@ -47,7 +52,9 @@ const Sorteringsstationer = () => {
               defaultValue="Välj kommun"
               onChange={async (e) => {
                 setStations(null)
-                const response = await fetch(`/api/stations?id=${encodeURI(e.target.value)}`)
+                const response = await fetch(
+                  `/api/stations?id=${encodeURIComponent(e.target.value)}`
+                )
                 const newStations = await response.json()
                 setStations(newStations)
               }}
