@@ -1,50 +1,65 @@
-import { useEffect, useRef, useState } from "react"
+import { Fragment, useEffect, useRef, useState } from "react"
 import { categories, homeCategories } from "data/categories"
 const allCategories = categories.concat(homeCategories)
+import axios from "axios"
+
+const htmlDecode = (input) => {
+  var doc = new DOMParser().parseFromString(input, "text/html")
+  return doc.documentElement.textContent
+}
 
 const SearchBox = () => {
-  const searchRef = useRef()
-
+  const [searchQuery, setQuery] = useState("")
+  const [cancelToken, setCancel] = useState(null)
+  const [searchResults, setResults] = useState([])
   const [status, setStatus] = useState({
-    error: false,
+    error: null,
     loading: false,
   })
-  const [searchResults, setResults] = useState(null)
-  const search = async () => {
-    setStatus({
-      error: false,
-      loading: true,
-    })
-    let target = searchRef.current
-    if (target.value.trim() && target.value.length >= 1) {
-      try {
-        const response = await fetch(`/api/search?q=${encodeURI(target.value)}`).catch((err) => {
-          err.category = "nätverksfel"
-          throw err
-        })
-        const data = await response.json().catch((err) => {
-          err.category = "svarsfel"
-          throw err
-        })
-        if (target.value.length >= 2) {
-          setStatus({ error: false, loading: false })
-          return setResults(data)
-        }
-      } catch (err) {
-        console.error(`${err?.category ?? "Fel"} vid sökning:`)
-        console.error(err)
-        setStatus({ error: err, loading: false })
-        return setResults(null)
-      }
-    }
-    setStatus({ error: false, loading: false })
-    return setResults(null)
-  }
+
   useEffect(() => {
-    search()
-    window.addEventListener("load", search)
-    return () => window.removeEventListener("load", search)
-  }, [])
+    if (searchQuery.length) {
+      setResults([])
+      fetchResults(searchQuery)
+    }
+  }, [searchQuery])
+
+  const handleSearch = (event) => {
+    const input = event.target.value
+    if (input.length) {
+      setStatus({ loading: true, error: null })
+      setQuery(input)
+    } else {
+      setStatus({ loading: false, error: null })
+    }
+  }
+
+  const fetchResults = (query) => {
+    if (cancelToken) cancelToken.cancel()
+    let source = axios.CancelToken.source()
+    setCancel(source)
+
+    axios
+      .get(`/api/search?q=${encodeURI(query)}`, {
+        cancelToken: source.token,
+      })
+      .then((res) => {
+        if (!res.data.length) {
+          setStatus({ loading: false, error: "Sökningen gav inga resultat." })
+        } else {
+          setStatus({ loading: false, error: null })
+          setResults(res.data)
+        }
+      })
+      .catch((error) => {
+        if (!axios.isCancel(error)) {
+          setStatus({
+            loading: false,
+            error: "Kunde inte hämta några sökresultat. Kontrollera internetanslutningen.",
+          })
+        }
+      })
+  }
 
   return (
     <div className="flex-1 bg-white rounded-3xl">
@@ -64,8 +79,10 @@ const SearchBox = () => {
           id="q"
           placeholder="Hur slänger man..."
           autoComplete="off"
-          ref={searchRef}
-          onInput={search}
+          onInput={handleSearch}
+          onFocus={(e) => {
+            if (e.target.value != searchQuery) handleSearch(e)
+          }}
         />
         <button
           type="submit"
@@ -109,13 +126,13 @@ const SearchBox = () => {
         </button>
       </form>
 
-      {searchResults?.length ? (
+      {searchResults.length ? (
         <ol id="results" className="p-4 space-y-2">
-          {searchResults.map(({ name, slug, category, text, service, link = "" }) => {
+          {searchResults.map(({ name, slug, category, text, service, link = "" }, index) => {
             const icon = allCategories.find((elem) => elem.slug == category.slug)?.icon
             return (
-              <li key={slug}>
-                <div className="flex p-4 space-x-3 rounded hover:bg-gray-100 focus:bg-gray-100">
+              <li key={slug + index}>
+                <div className="flex flex-col p-4 space-x-3 rounded sm:flex-row hover:bg-gray-100 focus:bg-gray-100">
                   <div className="flex flex-col flex-1">
                     <a href={link} target="_blank" rel="noopener noreferrer" className="mb-0.5">
                       <h2 className="font-semibold tracking-wide break-all sm:text-3xl hover:underline">
@@ -125,13 +142,11 @@ const SearchBox = () => {
                     {category?.text && (
                       <a
                         className="flex items-center mb-2 hover:underline"
-                        href={
-                          category?.slug
-                            ? `/sorteringsguide#${category.slug}`
-                            : "https://www.rambo.se/privat/sorteringsguide/"
-                        }
+                        href={category?.slug ? `/sorteringsguide#${category.slug}` : link}
+                        target={category?.slug ? undefined : "_blank"}
+                        rel={category?.slug ? undefined : "noopener noreferrer"}
                       >
-                        <div className="text-lg text-gray-600">{category.text}</div>
+                        <div className="text-lg text-gray-600">{htmlDecode(category.text)}</div>
                         {icon && (
                           <div className="ml-2 box-content w-5 h-5 p-1.5 text-white rounded-full bg-primary shadow">
                             {icon}
@@ -139,7 +154,16 @@ const SearchBox = () => {
                         )}
                       </a>
                     )}
-                    <p className="no-underline overflow-ellipsis line-clamp-3">{text}</p>
+                    {text && (
+                      <p className="no-underline overflow-ellipsis line-clamp-3">
+                        {text.split("\n").map((item, i) => (
+                          <Fragment key={item + i}>
+                            {item}
+                            <br />
+                          </Fragment>
+                        ))}
+                      </p>
+                    )}
                   </div>
 
                   <div>
@@ -147,10 +171,15 @@ const SearchBox = () => {
                       href={service.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex flex-col items-center justify-between h-full link"
+                      className="flex flex-col items-center justify-center h-full space-y-2 sm:w-32 link"
                     >
-                      <img className="w-32" src="/page_not_found.svg" alt="" />
-                      {service?.title && <div className="external">{service.title}</div>}
+                      <img
+                        className="hidden sm:block"
+                        src={service.imageUrl}
+                        alt=""
+                        style={{ filter: "grayscale(100%) brightness(0)" }}
+                      />
+                      {service?.name && <div className="text-center external">{service.name}</div>}
                     </a>
                   </div>
                 </div>
@@ -159,15 +188,7 @@ const SearchBox = () => {
           })}
         </ol>
       ) : (
-        (status.error || searchResults?.length === 0) && (
-          <div className="p-8 text-lg text-center text-gray-600">
-            {status.error
-              ? `Ett ${status.error?.category ?? "fel"} uppstod när sökningen skulle göras: ${
-                  status.error.message
-                }`
-              : searchResults?.length === 0 && "Sökningen gav inga resultat"}
-          </div>
-        )
+        status.error && <div className="p-8 text-lg text-center text-gray-600">{status.error}</div>
       )}
     </div>
   )

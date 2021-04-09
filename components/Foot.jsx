@@ -53,9 +53,14 @@ const Foot = () => (
         </FooterLinks>
 
         <div className="flex flex-col items-start space-y-4">
-          <Link href="/lasmer#kontakt">
-            <a className="link">Något fel på sidan?</a>
-          </Link>
+          <a
+            className="link"
+            href="https://github.com/elias123tre/slangratt/issues/new"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Något fel på sidan?
+          </a>
           <ul className="list-inside list-chevron">
             <li>
               Information om källsortering hämtad från{" "}
