@@ -16,21 +16,21 @@ const Sorteringsguide = () => (
                   att separera matavfall. En del lägger matavfallet i en hemkompost på tomten och
                   andra får den hämtad i samband med sophämtningen. Om man verkligen inte vill
                   källsortera mer slänger man resterande avfall i brännbart/restavfall, annars
-                  sorterar man hemma och lämnar sedan skräpet på en återvinningsstation.
+                  sorterar man hemma och lämnar sedan skräpet på en sorteringsstation.
                 </p>
               </div>
             </article>
             <article className="flex-1">
-              <h1 className="text-3xl font-semibold tracking-wide">Lämna på återvinningsstation</h1>
+              <h1 className="text-3xl font-semibold tracking-wide">Lämna på sorteringsstation</h1>
               <p>
                 Det är mycket enkelt att sortera skräpet i olika kärl och lådor hemma. Därefter kan
-                man helt enkelt åka med det till närmaste återvinningsstation. Det är ett enkelt
-                sätt att bidra till en hälsosammare miljö och det krävs bara lite betänketid när du
+                man helt enkelt åka med det till närmaste sorteringsstation. Det är ett enkelt sätt
+                att bidra till en hälsosammare miljö och det krävs bara lite betänketid när du
                 slänger något, inte så farligt va?
               </p>
               <Link href="/sorteringsstationer">
                 <a className="mt-2 text-lg bg-white btn text-primary-darker whitespace-nowrap">
-                  Hitta återvinningsstation &rarr;
+                  Hitta sorteringsstation &rarr;
                 </a>
               </Link>
             </article>
@@ -60,7 +60,7 @@ const Sorteringsguide = () => (
       <section className="flex flex-col w-full">
         <a href="#kategorier" className="p-2">
           <h1 className="mb-0 text-4xl font-bold text-center text-white md:text-5xl font-display">
-            På återvinnings&shy;stationen
+            På sorterings&shy;stationen
           </h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"

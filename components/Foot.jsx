@@ -43,7 +43,7 @@ const Foot = () => (
           ))}
         </FooterLinks>
 
-        <FooterLinks title="Vart sorterar man?" href="/sorteringsstationer">
+        <FooterLinks title="Var sorterar man?" href="/sorteringsstationer">
           <Link href="/sorteringsstationer#naramig">
             <a className="hover:text-gray-900">Nära mig</a>
           </Link>

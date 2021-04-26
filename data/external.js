@@ -25,7 +25,7 @@ const resources = [
   },
   {
     name: "Förpacknings & tidnings insamlingen",
-    text: "Guider, återvinningsstationer & statistik",
+    text: "Guider, sorteringsstationer & statistik",
     imageUrl: "https://www.ftiab.se/images/18.1afe0b95165c269d7916f/1536586518721/Resurs%203.png",
     link: "https://www.ftiab.se/",
   },
@@ -37,7 +37,7 @@ const resources = [
   },
   {
     name: "SRV",
-    text: "Återvinningsstationer & sophämtning i södertörn",
+    text: "Sorteringsstationer & sophämtning i södertörn",
     imageUrl:
       "https://www.srvatervinning.se/images/18.d9ec095172e6db9637a3a3e/1599220557843/logo-color.svg",
     link: "https://www.srvatervinning.se/",
